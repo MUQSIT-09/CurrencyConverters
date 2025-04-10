@@ -301,7 +301,7 @@ async function fetchExchangeRate() {
 
     if (currencyFrom && currencyTo) {
         try {
-            const response = await fetch(`https://api.currencylayer.com/live?access_key=7bbaa25a398a492cc9c0e084298fd71b&format=1`);
+            const response = await fetch(`https://api.currencylayer.com/live?access_key=740b1cc598b7cba66bf9f16e25914f01&format=1`);
             const data = await response.json();
             console.log(data); // Log response for debugging
 
