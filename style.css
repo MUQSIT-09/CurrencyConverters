@@ -62,10 +62,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 34px; 
-    width: 34px; 
+    height: 34px;
+    width: 34px;
     border-radius: 50%;
-    /* background-color: beige;  */ 
+    /* background-color: beige;  */
     overflow: hidden;
     position: relative;
 }
@@ -73,7 +73,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    cursor: pointer; 
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -104,8 +104,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px; 
-    width: 50px; 
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     /* background-color: beige;  */
     overflow: hidden;
@@ -115,7 +115,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    cursor: pointer; 
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -248,4 +248,229 @@
     border-radius: 5px;
 }
 
+/* --- Media Queries for Mobile Phones (General) --- */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
 
+    .box {
+        width: 95%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .inputfeildscontainer {
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .searchbar1,
+    .searchbar2 {
+        width: 90%;
+        height: 40px;
+    }
+
+    #searchbarfeild1,
+    #searchbarfeild2 {
+        font-size: small;
+    }
+
+    .rervese {
+        margin-top: 0;
+        height: 30px;
+        width: 30px;
+    }
+
+    .search {
+        height: 40px;
+        width: 40px;
+    }
+
+    .searchcontainer {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .countryflagscontainer {
+        flex-direction: column;
+        height: auto;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .flag1,
+    .flag2 {
+        width: 60%;
+        height: auto;
+        margin-left: 0;
+    }
+
+    .liveexchangerate {
+        font-size: 1.5rem;
+        height: auto;
+        margin: 10px auto;
+    }
+
+    #exchangeRate {
+        font-size: 1rem;
+        padding: 10px 8px;
+    }
+
+    .inputfeildformoneyconversion {
+        flex-direction: column;
+        height: auto;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .inputvaluecontainer {
+        width: 90%;
+    }
+
+    .inputvalue {
+        width: 100%;
+    }
+
+    .update {
+        width: 90%;
+        font-size: 1.5rem;
+        height: 3.5rem;
+    }
+
+    .updatevalue {
+        font-size: 1rem;
+        padding: 10px 8px;
+        height: auto;
+    }
+
+    .botomsection {
+        flex-direction: column;
+        height: auto;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .messageinfo {
+        font-size: 1rem;
+        padding: 10px 8px;
+        text-align: center;
+    }
+}
+
+/* --- Media Queries for Smallest Mobile Phones (e.g., iPhone SE, older Androids) --- */
+@media (max-width: 375px) {
+    .box {
+        width: 98%; /* Slightly wider for tiny screens */
+        padding: 10px; /* Reduce padding slightly */
+    }
+
+    .inputfeildscontainer {
+        /* Ensure column layout and center items */
+        flex-direction: column;
+        align-items: center;
+        gap: 8px; /* Slightly reduced gap */
+    }
+
+    /* Reorder using 'order' property for field1, field2, then reverse button */
+    .searchbar1 {
+        order: 1; /* First element */
+        width: 95%; /* Make it almost full width */
+        height: 45px; /* Slightly adjust height for better tap target */
+    }
+    #searchbarfeild1 {
+        font-size: 0.9em; /* Smaller font for tiny screens */
+    }
+
+    .searchbar2 {
+        order: 2; /* Second element */
+        width: 95%; /* Make it almost full width */
+        height: 45px; /* Slightly adjust height */
+    }
+    #searchbarfeild2 {
+        font-size: 0.9em; /* Smaller font for tiny screens */
+    }
+
+    .rervese {
+        order: 3; /* Third element in this container */
+        margin-top: 5px; /* Add a small margin */
+        height: 30px;
+        width: 30px;
+    }
+
+    .searchcontainer {
+        /* This container naturally comes after inputfeildscontainer */
+        width: 95%; /* Match width of input fields */
+        margin-top: 10px; /* Adjust spacing */
+        justify-content: center; /* Ensure search button is centered */
+    }
+
+    .search {
+        height: 45px; /* Slightly larger for easier tapping */
+        width: 45px; /* Slightly larger for easier tapping */
+        margin: 0 auto; /* Center the button within its container */
+    }
+
+    .countryflagscontainer {
+        gap: 0.5rem; /* Reduce gap between flags */
+        align-items: center;
+        flex-direction: column; /* Ensure flags stack */
+    }
+    .flag1,
+    .flag2 {
+        width: 70%; /* Make flags larger and clearly stacked */
+        height: auto;
+    }
+
+    .liveexchangerate {
+        font-size: 1.2rem; /* Further reduce font size */
+        margin: 8px auto;
+    }
+
+    #exchangeRate {
+        font-size: 0.9rem; /* Further reduce font size */
+        padding: 8px 6px;
+    }
+
+    .inputfeildformoneyconversion {
+        gap: 8px; /* Reduce gap */
+    }
+
+    .inputvaluecontainer {
+        width: 95%; /* Make input wider */
+    }
+
+    .inputvalue {
+        width: 100%;
+        font-size: 0.9rem; /* Adjust font size */
+    }
+
+    .update {
+        width: 95%; /* Adjust width */
+        font-size: 1.2rem; /* Ensure readable font size */
+        height: 3rem; /* Adjust height */
+        padding: 8px;
+    }
+
+    .updatevalue {
+        font-size: 0.9rem; /* Adjust font size */
+        padding: 8px 6px;
+    }
+
+    .botomsection {
+        gap: 0.8rem; /* Reduce gap */
+    }
+
+    .messageinfo {
+        font-size: 0.9rem; /* Adjust font size */
+        padding: 8px 6px;
+    }
+}
