@@ -236,7 +236,30 @@ const countryInfo = {
 // Initialize everything when the DOM is loaded
 
 
-// DOM elements
+// Helper: Normalize input
+function normalizeInput(input) {
+  return input.trim().toLowerCase();
+}
+
+// Get country by name prefix or currency code
+function getCountryByInput(input) {
+  input = normalizeInput(input);
+  for (const country in countries) {
+    const data = countries[country];
+    const nameMatch = country.toLowerCase().startsWith(input);
+    const currencyMatch = data.currency.toLowerCase() === input;
+    if (nameMatch || currencyMatch) return country;
+  }
+  return null;
+}
+
+// Get currency code using country or currency code
+function getCurrencyCode(input) {
+  const country = getCountryByInput(input);
+  return country ? countries[country].currency : null;
+}
+
+// DOM Elements
 const searchField1 = document.getElementById("searchbarfeild1");
 const searchField2 = document.getElementById("searchbarfeild2");
 const reverseButton = document.querySelector(".rervese button");
@@ -246,138 +269,90 @@ const flag2Element = document.querySelector(".flag2 img");
 const exchangeRateElement = document.getElementById("exchangeRate");
 const amountInput = document.getElementById("amount");
 const convertedAmountElement = document.getElementById("convertedAmount");
-const messageDisplayedElement = document.getElementById('mesaagedisplayed'); 
+const messageDisplayedElement = document.getElementById("mesaagedisplayed");
 
-// Initialize on document load
-document.addEventListener("DOMContentLoaded", function () {
-    searchField1.value = "United States";
-    searchField2.value = "India";
-    updateFlags();
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
+  searchField1.value = "United States";
+  searchField2.value = "India";
+  updateFlags();
 
-    reverseButton.addEventListener("click", reverseFields);
-    searchButton.addEventListener("click", handleSearch);
+  reverseButton.addEventListener("click", reverseFields);
+  searchButton.addEventListener("click", handleSearch);
 
-    searchField1.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") handleSearch();
-    });
+  searchField1.addEventListener("keypress", e => {
+    if (e.key === "Enter") handleSearch();
+  });
 
-    searchField2.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") handleSearch();
-    });
-
-    // Initial fetch
-    // fetchExchangeRate();
+  searchField2.addEventListener("keypress", e => {
+    if (e.key === "Enter") handleSearch();
+  });
 });
 
-// Update flags based on user input
 function updateFlags() {
-    const country1 = searchField1.value.trim();
-    const country2 = searchField2.value.trim();
+  const country1 = getCountryByInput(searchField1.value);
+  const country2 = getCountryByInput(searchField2.value);
 
-    flag1Element.src = countries[country1] ? `https://flagsapi.com/${countries[country1].flag}/flat/64.png` : '';
-    flag2Element.src = countries[country2] ? `https://flagsapi.com/${countries[country2].flag}/flat/64.png` : '';
+  flag1Element.src = country1 ? `https://flagsapi.com/${countries[country1].flag}/flat/64.png` : "";
+  flag2Element.src = country2 ? `https://flagsapi.com/${countries[country2].flag}/flat/64.png` : "";
 }
 
-// Handle search functionality
-async function handleSearch() {
-    updateFlags();
-    await fetchExchangeRate();
-}
-
-// Reverse the input fields
 function reverseFields() {
-    const temp = searchField1.value;
-    searchField1.value = searchField2.value;
-    searchField2.value = temp;
-    updateFlags();
-    fetchExchangeRate();
+  const temp = searchField1.value;
+  searchField1.value = searchField2.value;
+  searchField2.value = temp;
+  updateFlags();
+  fetchExchangeRate();
 }
-// Fetch exchange rates from API
+
+async function handleSearch() {
+  updateFlags();
+  await fetchExchangeRate();
+}
+
 async function fetchExchangeRate() {
-    const country1 = searchField1.value.trim();
-    const country2 = searchField2.value.trim();
-    const currencyFrom = countries[country1]?.currency; // Get currency for first country
-    const currencyTo = countries[country2]?.currency; // Get currency for second country
+  const currencyFrom = getCurrencyCode(searchField1.value);
+  const currencyTo = getCurrencyCode(searchField2.value);
+  const countryFrom = getCountryByInput(searchField1.value);
+  const countryTo = getCountryByInput(searchField2.value);
 
-    if (currencyFrom && currencyTo) {
-        try {
-            const response = await fetch(`https://api.currencylayer.com/live?access_key=740b1cc598b7cba66bf9f16e25914f01&format=1`);
-            const data = await response.json();
-            console.log(data); // Log response for debugging
+  if (!currencyFrom || !currencyTo) {
+    exchangeRateElement.innerHTML = 'Invalid currency input';
+    return;
+  }
 
-            // Check if request was successful
-            if (data.success) {
-                let exchangeRate;
-                
-                // Special handling for USD conversions
-                if (currencyFrom === 'USD') {
-                    // Direct conversion from USD to another currency
-                    exchangeRate = data.quotes[`USD${currencyTo}`];
-                    
-                    if (exchangeRate) {
-                        exchangeRateElement.innerHTML = `1 USD = ${exchangeRate.toFixed(4)} ${currencyTo}`;
-                    } else {
-                        exchangeRateElement.innerHTML = 'Rate not available for this pair';
-                        return;
-                    }
-                } else if (currencyTo === 'USD') {
-                    // Conversion from another currency to USD
-                    const rateToUSD = data.quotes[`USD${currencyFrom}`];
-                    
-                    if (rateToUSD) {
-                        exchangeRate = 1 / rateToUSD; // Inverse for non-USD to USD
-                        exchangeRateElement.innerHTML = `1 ${currencyFrom} = ${exchangeRate.toFixed(4)} USD`;
-                    } else {
-                        exchangeRateElement.innerHTML = 'Rate not available for this pair';
-                        return;
-                    }
-                } else {
-                    // Standard case - neither currency is USD
-                    const rateFromUSD = data.quotes[`USD${currencyFrom}`]; // Rate from USD to currencyFrom
-                    const rateToUSD = data.quotes[`USD${currencyTo}`]; // Rate from USD to currencyTo
+  try {
+    const res = await fetch(`https://open.er-api.com/v6/latest/${currencyFrom}`);
+    const data = await res.json();
 
-                    if (rateFromUSD && rateToUSD) {
-                        exchangeRate = rateToUSD / rateFromUSD; // Calculate exchange rate between currencies
-                        exchangeRateElement.innerHTML = `1 ${currencyFrom} = ${exchangeRate.toFixed(4)} ${currencyTo}`;
-                    } else {
-                        exchangeRateElement.innerHTML = 'Rate not available for this pair';
-                        return;
-                    }
-                }
-                
-                // Calculate the converted amount
-                const amount = parseFloat(amountInput.value);
-                if (!isNaN(amount)) {
-                    const convertedAmount = amount * exchangeRate;
-                    convertedAmountElement.innerHTML = `${amount} ${currencyFrom} = ${convertedAmount.toFixed(4)} ${currencyTo}`;
-                } else {
-                    convertedAmountElement.innerHTML = 'Please enter a valid amount';
-                }
-                
-                // Get rates for comparison (to determine which currency is stronger)
-                const rateFromUSD = currencyFrom === 'USD' ? 1 : data.quotes[`USD${currencyFrom}`];
-                const rateToUSD = currencyTo === 'USD' ? 1 : data.quotes[`USD${currencyTo}`];
-                
-                // Compare currency strength and display relevant info
-                // Lower rate from USD means stronger currency (it takes fewer units to equal 1 USD)
-                if (rateFromUSD < rateToUSD) {
-                    // First currency is stronger
-                    messageDisplayedElement.innerHTML = countryInfo[currencyFrom] || '';
-                } else if (rateFromUSD > rateToUSD) {
-                    // Second currency is stronger
-                    messageDisplayedElement.innerHTML = countryInfo[currencyTo] || '';
-                } else {
-                    // Currencies are equal in value
-                    messageDisplayedElement.innerHTML = '';
-                }
-            } else {
-                exchangeRateElement.innerHTML = 'Error in API response';
-            }
-        } catch (error) {
-            console.error('Error fetching exchange rates:', error);
-            exchangeRateElement.innerHTML = 'Error fetching rate';
-        }
+    if (data.result === "success" && data.rates[currencyTo]) {
+      const rate = data.rates[currencyTo];
+      exchangeRateElement.innerHTML = `1 ${currencyFrom} = ${rate.toFixed(4)} ${currencyTo}`;
+
+      const amount = parseFloat(amountInput.value);
+      if (!isNaN(amount)) {
+        const convertedAmount = amount * rate;
+        convertedAmountElement.innerHTML = `${amount} ${currencyFrom} = ${convertedAmount.toFixed(4)} ${currencyTo}`;
+      } else {
+        convertedAmountElement.innerHTML = 'Please enter a valid amount';
+      }
+
+      // Currency strength info
+      const rateFromUSD = currencyFrom === 'USD' ? 1 : 1 / data.rates['USD'];
+      const rateToUSD = currencyTo === 'USD' ? 1 : 1 / (data.rates['USD'] / rate);
+
+      if (rateFromUSD < rateToUSD) {
+        messageDisplayedElement.innerHTML = countryInfo[currencyFrom] || '';
+      } else if (rateFromUSD > rateToUSD) {
+        messageDisplayedElement.innerHTML = countryInfo[currencyTo] || '';
+      } else {
+        messageDisplayedElement.innerHTML = '';
+      }
     } else {
-        exchangeRateElement.innerHTML = 'Invalid currency input';
+      exchangeRateElement.innerHTML = 'Exchange rate not found';
     }
+  } catch (err) {
+    console.error('API Error:', err);
+    exchangeRateElement.innerHTML = 'Error fetching rate';
+  }
 }

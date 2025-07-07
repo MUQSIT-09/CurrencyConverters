@@ -19,7 +19,10 @@
     align-items: center;
     height: 100vh;
     width: 100vw;
-    background: radial-gradient(circle, rgba(52,61,52,1) 100%, rgba(148,43,185,1) 100%);
+    /* background: radial-gradient(circle, rgba(52,61,52,1) 100%, rgba(148,43,185,1) 100%); */
+    background: linear-gradient(135deg, #c2e9fb 0%, #a1c4fd 100%);
+    
+    
 }
 
 .box {
@@ -473,4 +476,72 @@
         font-size: 0.9rem; /* Adjust font size */
         padding: 8px 6px;
     }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #dff6ff, #e4e9f7); /* cool pastel gradient */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;          /* ✅ allow scroll if content grows */
+  overflow-x: hidden;         /* ✅ prevent sideways scroll */
+  padding: 20px;              /* ✅ gives breathing room on mobile */
+}
+
+.container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* For screens 500px and below: stack items vertically in correct order */
+@media (max-width: 500px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  select,
+  button {
+    width: 100%;
+  }
+}
+
+select,
+button {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-width: 120px;
+  flex: 1 1 120px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #5b86e5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #3b6dd5;
 }
