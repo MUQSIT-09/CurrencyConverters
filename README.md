@@ -1,6 +1,12 @@
 # 💱 CurrencyConverters
 
-A **responsive web app** for real-time currency conversion using free public APIs. Just type the name or code of any country/currency (even partially like "ind", "usd", "yen") and get accurate exchange rates with national flags, currency facts, and a clean modern UI.
+A **responsive web app** for real-time currency conversion using free public APIs.  
+Easily search by **country name** or **currency code** (even partially like `ind`, `usd`, `yen`), and get:
+
+- ✅ Accurate exchange rates  
+- 🌍 Country flags  
+- 📊 Currency facts   
+- 📱 Mobile-friendly design
 
 ---
 
@@ -12,28 +18,33 @@ A **responsive web app** for real-time currency conversion using free public API
 
 ## 📸 Preview
 
-[![Screenshot-2025-07-07-200117.png](https://i.postimg.cc/nrt6BXVG/Screenshot-2025-07-07-200117.png)](https://postimg.cc/34nSHJvk)
+<p align="center">
+  <img src="https://i.postimg.cc/nrt6BXVG/Screenshot-2025-07-07-200117.png" width="80%" alt="Currency Converter Screenshot 1"/>
+  <br/><br/>
+  <img src="https://i.postimg.cc/50n9fHcy/Screenshot-2025-07-07-201536.png" width="80%" alt="Currency Converter Screenshot 2"/>
+</p>
+
 ---
 
 ## 🚀 Features
 
-- 🌍 **Real-time exchange rates** from [ExchangeRate.host](https://exchangerate.host)
-- 🏳️‍🌈 **National flags** auto-loaded via [FlagsAPI](https://flagsapi.com)
-- 🔤 **Case-insensitive search** (works with partial names like `ind`, `usd`, `yen`, `jaP`)
-- 🔄 **Reverse button** to flip countries and currencies
-- 📊 **Currency facts** shown based on the stronger currency
-- 📱 **Responsive Design** for desktops, tablets, and phones
-- 🧠 Smart parsing — accepts **country names** *or* **currency codes**
+- 🌍 **Live Exchange Rates** – Powered by [ExchangeRate.host](https://exchangerate.host)
+- 🏳️ **Country Flags** – Auto-loaded via [FlagsAPI](https://flagsapi.com)
+- 🔤 **Flexible Input** – Works with partial/case-insensitive country or currency names
+- 🔄 **Reverse Conversion** – Flip countries with one click
+- 📊 **Currency Facts** – Shows which currency is stronger
+- 🧠 **Smart Parsing** – Enter either **currency code** or **country name**
+- 📱 **Fully Responsive UI** – Works on desktop, tablet, and mobile
 
 ---
 
 ## 🧰 Tech Stack
 
-- **HTML5** – Markup structure  
+- **HTML5** – Structure  
 - **CSS3** – Styling and responsiveness  
-- **JavaScript (Vanilla)** – Logic, API fetch, interactivity  
-- **[ExchangeRate.host API](https://exchangerate.host)** – Free exchange rates  
-- **[FlagsAPI](https://flagsapi.com)** – Country flags by ISO codes  
+- **JavaScript (Vanilla)** – API fetch and interactivity  
+- **[ExchangeRate.host](https://exchangerate.host)** – Exchange rate data  
+- **[FlagsAPI](https://flagsapi.com)** – Country flag support
 
 ---
 
@@ -44,5 +55,4 @@ To run locally:
 ```bash
 git clone https://github.com/MUQSIT-09/CurrencyConverters.git
 cd CurrencyConverters
-open index.html  # or use your browser to open
-
+open index.html  # or use any browser to open the file
