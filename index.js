@@ -197,7 +197,18 @@ const countries = {
     "Zimbabwe": { flag: "ZW", currency: "ZWL" }
 };
 // Country information for bottom section
-ussian Ruble has undergone several redenominations throughout its history.",
+const countryInfo = {
+    "USD": "The United States Dollar is the world's primary reserve currency.",
+    "EUR": "The Euro is used by 19 of the 27 EU member states.",
+    "GBP": "The British Pound is one of the oldest currencies still in use.",
+    "JPY": "The Japanese Yen is the third most traded currency in the world.",
+    "INR": "The Indian Rupee is one of the oldest currencies with a rich history dating back to ancient times.",
+    "CNY": "The Chinese Yuan is the currency of the world's second-largest economy.",
+    "AUD": "The Australian Dollar is one of the most traded currencies in the Asia-Pacific region.",
+    "CAD": "The Canadian Dollar is backed by significant natural resources.",
+    "CHF": "The Swiss Franc is known for its stability in times of global economic uncertainty.",
+    "SGD": "The Singapore Dollar is one of Asia's strongest currencies.",
+    "RUB": "The Russian Ruble has undergone several redenominations throughout its history.",
     "BRL": "The Brazilian Real was introduced in 1994 as part of the Plano Real to stabilize the economy.",
     "ZAR": "The South African Rand is named after the Witwatersrand, the ridge where most of South Africa's gold deposits were found.",
     "MXN": "The Mexican Peso was the first currency to use the '$' symbol which was later adopted by the US dollar.",
