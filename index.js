@@ -196,6 +196,7 @@ const countries = {
     "Zambia": { flag: "ZM", currency: "ZMW" },
     "Zimbabwe": { flag: "ZW", currency: "ZWL" }
 };
+
 // Country information for bottom section
 const countryInfo = {
     "USD": "The United States Dollar is the world's primary reserve currency.",
@@ -230,8 +231,8 @@ const countryInfo = {
     "ILS": "The Israeli New Shekel has been Israel's currency since 1986.",
     "CLP": "The Chilean Peso has historically been one of Latin America's most stable currencies.",
     "DKK": "The Danish Krone has been pegged to the euro since the introduction of the European currency.",
-    "OMR": "The Omani Rial is one of the highest-valued currencies in the world.",
-    "QAR": "The Qatari Riyal is pegged to the US Dollar and is used widely in the Gulf region.",
+    "OMR": "The Omani Rial is one of the highest-valued currencies in the world, renowned for its strong purchasing power.",
+    "QAR": "The Qatari Riyal is pegged to the US Dollar and is widely used in the Gulf region.",
     "KWD": "The Kuwaiti Dinar is the strongest currency in the world in terms of exchange rate value.",
     "BHD": "The Bahraini Dinar is the second highest-valued currency unit globally.",
     "JOD": "The Jordanian Dinar is pegged to the US dollar and is used as legal tender in the West Bank.",
@@ -246,7 +247,7 @@ const countryInfo = {
     "AFN": "The Afghan Afghani was reintroduced in 2002 after decades of conflict.",
     "AZN": "The Azerbaijani Manat was redenominated in 2006 to stabilize inflation.",
     "GEL": "The Georgian Lari has been in use since 1995, replacing the Kuponi.",
-    "KZT": "The Kazakhstani Tenge was introduced in 1993 after the Soviet ruble.",
+    "KZT": "The Kazakhstani Tenge was introduced in 1993 after the collapse of the Soviet ruble zone.",
     "UZS": "The Uzbekistani Som has undergone a steady liberalization since 2017.",
     "TMT": "The Turkmenistani Manat was reissued in 2009 with a 5,000-to-1 redenomination.",
     "MAD": "The Moroccan Dirham is a stable currency used in Morocco and Western Sahara.",
@@ -269,7 +270,6 @@ const countryInfo = {
     "AOA": "The Angolan Kwanza is used in Angola and has undergone redenominations to manage inflation.",
     "ARS": "The Argentine Peso has experienced recurring inflation and currency devaluations.",
     "AWG": "The Aruban Florin is pegged to the US Dollar.",
-    "AZN": "The Azerbaijani Manat was redenominated in 2006 to stabilize inflation.",
     "BBD": "The Barbadian Dollar is pegged to the US Dollar.",
     "BGN": "The Bulgarian Lev is pegged to the Euro.",
     "BIF": "The Burundian Franc is a non-convertible currency.",
@@ -341,6 +341,11 @@ const countryInfo = {
     "UAH": "The Ukrainian Hryvnia was introduced after independence.",
     "UYU": "The Uruguayan Peso has undergone several redenominations.",
     "VUV": "The Vanuatu Vatu is known for its vibrant designs.",
+    "WST": "The Samoan Tala is known for its colorful banknotes depicting local scenes.",
+    "XAF": "The Central African CFA Franc is used by several countries in Central Africa and pegged to the Euro.",
+    "XCD": "The East Caribbean Dollar is used by eight island nations in the Caribbean and pegged to the US Dollar.",
+    "XOF": "The West African CFA Franc is used by several countries in West Africa and pegged to the Euro.",
+    "XPF": "The CFP Franc is used in French Pacific territories and pegged to the Euro.",
     "YER": "The Yemeni Rial has faced severe devaluation due to conflict."
 };
 
