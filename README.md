@@ -12,7 +12,7 @@ A **responsive web app** for real-time currency conversion using free public API
 
 ## 📸 Preview
 
-![Currency Converter Screenshot](preview-image-url-here) <!-- You can upload a screenshot and replace this link -->
+![Currency Converter Screenshot](https://ibb.co/PszZChFf) <!-- You can upload a screenshot and replace this link -->
 
 ---
 
